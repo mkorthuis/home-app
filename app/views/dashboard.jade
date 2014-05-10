@@ -1,0 +1,50 @@
+
+extends layout
+
+block mainContent
+	div(class='container')
+		div(class='page-header text-center')
+			h1
+				span(class='fa fa-anchor') 
+				| Profile Page
+			a(href='/logout' class='btn btn-default btn-sm') Logout
+		div(class='row')
+			div(class='col-sm-6')
+				div(class='well')
+					h3
+						span(class='fa fa-user')
+						| Local	
+					if user.local.email
+						p
+							strong id
+							| : #{user._id}
+							br
+							strong email
+							| : #{user.local.email}
+							strong password
+							| : #{user.local.password}
+						a(href='/unlink/local' class='btn btn-default') Unlink
+					else
+						a(href='/connect/local' class='btn btn-default') Connect Local
+			div(class='col-sm-6')
+				div(class='well')
+					h3(class='text-danger')
+						span(class='fa fa-google-plus')
+						| Google+
+					if user.google.token
+						p
+							strong id
+							| : #{user.google.id}
+							br
+							strong token
+							| : #{user.google.token}
+							br
+							strong email
+							| : #{user.google.email}
+							br
+							strong name 
+							| : #{user.google.name}
+						a(href='/unlink/google' class='btn btn-danger') Unlink
+					else 
+						a(href='/connect/google' class='btn btn-danger') Connect Google
+
